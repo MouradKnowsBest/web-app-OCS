@@ -20,7 +20,8 @@
         ←
       </button></router-link
     >
-</div>
+
+
 
 
       <p>{{ pitch[0] }}</p>
@@ -71,6 +72,7 @@
 
   </div>
 
+</div>
 
 </template>
 
@@ -97,7 +99,18 @@ export default {
       fetch(`https://api.ocs.fr/` + this.route.detaillink)
         .then((response) => response.json())
         .then((data) => {
-          this.pitch.push(data.contents.pitch);
+
+
+
+        if (data.contents.pitch ) {
+                    this.pitch.push(data.contents.pitch);
+
+      }
+      else{
+                    this.pitch.push(data.contents.seasons[0].pitch);
+
+      }
+
         });
     },
 
