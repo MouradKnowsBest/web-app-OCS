@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style>
-@import "../../node_modules/shaka-player/dist/controls.css"; /* Shaka player CSS import */
+@import "../../node_modules/shaka-player/dist/controls.css";
 
 .video {
   display: flex;

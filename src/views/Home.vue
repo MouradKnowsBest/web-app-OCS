@@ -1,12 +1,14 @@
 <template>
-  <router-link to="/" href="./"
-    ><img alt="Vue logo" src="../assets/logo.png"
+  <router-link to="/" href="/"
+    ><img alt="App logo" src="../assets/logo.png"
   /></router-link>
+
 
   <form @submit.prevent="SearchMovies()" class="search-bar">
     <input type="text" placeholder="Votre recherche" v-model="search" />
     <input type="submit" value="CHERCHER" class="search-input" />
   </form>
+
 
   <div class="movies-list">
     <ul>
@@ -78,6 +80,7 @@ export default {
     async getUserInput() {
       this.$emit("userInput", this.userInput);
     },
+
   },
 };
 </script>
@@ -111,16 +114,7 @@ export default {
   margin-right: 10px;
   background-color: transparent;
   border: 1px solid #22254b;
-}
-
-::placeholder {
-  /* Internet Explorer 10-11 */
-  color: rgb(255, 255, 255);
-  opacity: 0.35; /* Firefox */
-}
-
-.search-bar input {
-  color: #ffffff;
+    color: #ffffff;
   justify-content: space-between;
   font-size: 25px;
   text-align: center;
@@ -129,6 +123,12 @@ export default {
 .search-bar input :focus {
   background-color: #22254b;
   outline: none;
+}
+
+::placeholder {
+  /* Internet Explorer 10-11 */
+  color: rgb(255, 255, 255);
+  opacity: 0.35; /* Firefox */
 }
 
 .search-bar button {
@@ -153,9 +153,10 @@ export default {
   border-radius: 12px 12px 0 0;
   border: solid 1px rgba(255, 255, 255, 0.2);
 
-  width: 480px;
+  width: 380px;
 
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
 }
 
 .movie-img {
@@ -165,7 +166,7 @@ export default {
 .movies-list ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   background-color: rgb(57, 45, 109);
 }
 
@@ -174,9 +175,13 @@ ul {
 }
 
 li {
-  flex: 1 1 0 19%;
+  flex: 1 0 0 19%;
   color: white;
+      margin-top: 50px;
+  display: inline-block;
+
 }
+
 
 .play-icon {
   background-color: transparent;
@@ -219,6 +224,10 @@ h2 {
   
 }
 
+h3 {
+  margin: 40px 0 0;
+}
+
 p {
   font-family: "Poppins", sans-serif;
   color: #eee;
@@ -240,17 +249,7 @@ a:link {
 .video-player {
 }
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+
 a {
   color: orange;
 }

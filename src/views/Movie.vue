@@ -1,4 +1,5 @@
 <template>
+
   <div class="video-player" id="video" v-if="showVideo">
     <VideoPlayer
       manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
@@ -19,6 +20,28 @@
         ←
       </button></router-link
     >
+
+
+
+<h2>Texte animé sur une image décolorée en survol</h2>
+<div class="example">
+    <img
+        :src="'https://statics.ocs.fr/' + route.img"
+     width="1000" height="600" alt="tree" />
+
+      
+  <div class="content">
+    <div class="text">      <h1>
+        {{ route.title }}
+        <h2>{{ route.subtitle }}</h2>
+      </h1>
+</div>
+  </div>
+</div>
+
+
+
+
 
     <div class="text-block">
       <h1>
@@ -114,10 +137,13 @@ export default {
   background-size: cover;
 }
 
-.img-and-play-btn-container :hover {
-  background-color: #000;
-  opacity: 0.4;
+
+.img-and-play-btn-container :hover{
+  background-color: transparent;
+  opacity: 1;
 }
+
+
 .img-and-play-btn-container:hover .overlay {
   opacity: 0.7;
   background-color: #fff;
@@ -131,10 +157,16 @@ export default {
 
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+
+
+  background-color: transparent;
+  opacity: 0.4;
+
 }
 
 .btn-play :hover {
-  background-color: transparent;
+    background-color: transparent;
+
 }
 
 .play-icon {
@@ -201,4 +233,47 @@ a:link {
 .video-player {
   /* width: auto; */
 }
+
+
+.example {
+  position: relative;
+  padding: 0;
+  width: 1000px;
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+}
+.content {
+  opacity: 0;
+  font-size: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #1c87c9;
+  background-color: rgba(200, 200, 200, 0.5);
+  width: 1000;
+  height: 600;
+  -webkit-transition: all 400ms ease-out;
+  -moz-transition: all 400ms ease-out;
+  -o-transition: all 400ms ease-out;
+  -ms-transition: all 400ms ease-out;
+  transition: all 400ms ease-out;
+  text-align: center;
+}
+.example .content:hover {
+  opacity: 1;
+}
+.example .content .text {
+  height: 0;
+  opacity: 1;
+  transition-delay: 0s;
+  transition-duration: 0.4s;
+}
+.example .content:hover .text {
+  opacity: 1;
+  transform: translateY(250px);
+  -webkit-transform: translateY(250px);
+}
+
+
 </style>
