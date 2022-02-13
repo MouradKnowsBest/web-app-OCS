@@ -1,46 +1,61 @@
 <template>
-  <div class="movie-page">
-    <div class="video-player" id="video" v-if="showVideo">
-      <VideoPlayer
-        manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
-      />
-    </div>
+  <div class="video-player" id="video" v-if="showVideo">
+    <VideoPlayer
+      manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
+    />
+  </div>
 
+  <div class="movie-page">
     <router-link to="/"
-      ><button style="color: white; background-color:red; font-size:20pt">
-        BACK HOME
+      ><button
+        style="
+          color: white;
+          background-color: #ff6600;
+          font-size: 20pt;
+          position: absolute;
+          right: 9px;
+        "
+      >
+        ←
       </button></router-link
     >
 
-    <h1>{{ route.title }}</h1>
+    <div class="text-block">
+      <h1>
+        {{ route.title }}
+        <h2>{{ route.subtitle }}</h2>
+      </h1>
 
-    <img
-      :src="'https://statics.ocs.fr/' + route.img"
-      style="width: 30%"
-      alt=""
-    />
-    <div class="btn-play">
-      <button
-        href="#"
-        class="play-icon"
-        title="Video Play"
-        v-on:click="clickToSowVideo()"
-      >
-        <i
-          class="fa fa-play-circle"
-          style="font-size: 48px; color: orange; background: transparent"
-        ></i>
-      </button>
+      <p>{{ pitch[0] }}</p>
     </div>
 
-    <h2>{{ route.subtitle }}</h2>
-
-    <p>{{ pitch[0] }}</p>
+    <div class="img-and-play-btn-container">
+      <img
+        :src="'https://statics.ocs.fr/' + route.img"
+        style="width: 100%"
+        alt=""
+      />
+      <div class="btn-play">
+        <button
+          href="#"
+          class="play-icon"
+          title="Video Play"
+          v-on:click="clickToSowVideo()"
+        >
+          <i
+            class="fa fa-play-circle"
+            style="font-size: 180px; color: orange"
+          ></i>
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import VideoPlayer from "../components/VideoPlayer.vue";
+
+// const VIDEO_URL = "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
 
 export default {
   name: "Movie",
@@ -87,53 +102,39 @@ export default {
   background-color: #22254b;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-.search-bar input :focus {
-  background-color: #22254b;
-  outline: none;
+.img-and-play-btn-container {
+  position: relative;
 }
 
-.app .container {
-  display: flex;
-  padding: 10px;
+.img-and-play-btn-container img {
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.movie-card {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-
-  padding: 1px;
-
-  border-radius: 12px 12px 0 0;
-  border: solid 1px rgba(255, 255, 255, 0.2);
-
-  width: 480px;
-
-  margin-bottom: 10px;
+.img-and-play-btn-container :hover {
+  background-color: #000;
+  opacity: 0.4;
+}
+.img-and-play-btn-container:hover .overlay {
+  opacity: 0.7;
+  background-color: #fff;
 }
 
-.movie-img {
-  width: 500px;
+.btn-play {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 }
 
-.movies-list ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  background-color: rgb(57, 45, 109);
-}
-
-ul {
-  list-style-type: none;
-}
-
-li {
-  flex: 1 1 0 19%;
-  color: white;
+.btn-play :hover {
+  background-color: transparent;
 }
 
 .play-icon {
@@ -146,27 +147,11 @@ li {
   border: none;
 }
 
-.overlay {
-  height: 100%;
-  width: 100%;
-  opacity: 0.3;
-  transition: 0.3s ease;
-  background-color: transparent;
-}
-
-.container:hover .overlay {
-  opacity: 0.7;
-}
-
-button {
-  color: rgb(43, 19, 129);
-  font-family: "Poppins", sans-serif;
-}
-
 h1 {
   color: rgb(17, 218, 124);
   font-size: 20px;
   font-family: "Poppins", sans-serif;
+  font-size: 3rem;
 }
 
 h2 {
@@ -174,12 +159,17 @@ h2 {
   color: #eee;
   font-size: 15px;
   padding: 5px;
+  font-size: 2rem;
 }
 
+h3 {
+  margin: 40px 0 0;
+}
 p {
   font-family: "Poppins", sans-serif;
   color: #eee;
   display: flex;
+  font-size: 1.5rem;
 
   align-items: center;
   justify-content: center;
@@ -191,25 +181,24 @@ p {
   margin-right: 550px;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+a {
+  color: orange;
+}
 a:link {
   text-decoration: none;
 }
 
 .video-player {
-}
-
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: orange;
+  /* width: auto; */
 }
 </style>

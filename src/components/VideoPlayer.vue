@@ -1,38 +1,35 @@
-
 <template>
   <div ref="videoContainer" class="shadow-lg mx-auto max-w-full size">
     <video
       id="video"
       ref="videoPlayer"
       class="video"
-      width=window.width
+      width="window.width"
       :poster="posterUrl"
-      autoplay 
+      autoplay
     ></video>
   </div>
 </template>
 
 <script>
 export default {
-
   props: {
     manifestUrl: {
       type: String,
-      required: true
+      required: true,
     },
     licenseServer: {
       type: String,
-      required: false
+      required: false,
     },
     posterUrl: {
       type: String,
       required: false,
-      default: ''
-    }
-
+      default: "",
+    },
   },
   mounted() {
-    const shaka = require('shaka-player/dist/shaka-player.ui.js');
+    const shaka = require("shaka-player/dist/shaka-player.ui.js");
     const player = new shaka.Player(this.$refs.videoPlayer);
     const ui = new shaka.ui.Overlay(
       player,
@@ -45,37 +42,35 @@ export default {
 
     player.configure({
       drm: {
-        servers: { 'com.widevine.alpha': this.licenseServer }
-      }
+        servers: { "com.widevine.alpha": this.licenseServer },
+      },
     });
 
     player
       .load(this.manifestUrl)
       .then(() => {
-        console.log('The video has now been loaded!');
+        console.log("The video has now been loaded!");
       })
-      .catch(this.onError); 
+      .catch(this.onError);
   },
-  
+
   methods: {
     onError(error) {
-      console.error('Error code', error.code, 'object', error);
-    }
-  }
+      console.error("Error code", error.code, "object", error);
+    },
+  },
 };
 </script>
 
 <style>
-@import '../../node_modules/shaka-player/dist/controls.css'; /* Shaka player CSS import */
+@import "../../node_modules/shaka-player/dist/controls.css"; /* Shaka player CSS import */
 
-
-.video{
+.video {
   display: flex;
 }
 
 .size {
-     width:auto;
-     height:auto;
-
+  width: auto;
+  height: 800px;
 }
 </style>

@@ -1,36 +1,17 @@
 <template>
-  <!-- <div class="search-bar">
-     <input type="text" v-model="search" placeholder="Votre recherche" />
-     <input type="text" placeholder="Votre recherche" /> 
-
-     <form @submit.prevent="SearchMovies()" class="search-box">
-      <input type="text" placeholder="What are you looking for?" v-model="search" />
-      <input type="submit" value="Search" />
-    </form> 
-     <input type="submit" value="Search" />
-    <div class="button">
-      <button @click="getUserInput">CHERCHER</button>
-    </div>
-    <br />
-    <br />
-  </div> -->
   <router-link to="/" href="./"
     ><img alt="Vue logo" src="../assets/logo.png"
   /></router-link>
 
   <form @submit.prevent="SearchMovies()" class="search-bar">
     <input type="text" placeholder="Votre recherche" v-model="search" />
-    <input type="submit" value="CHERCHER" />
+    <input type="submit" value="CHERCHER" class="search-input" />
   </form>
 
   <div class="movies-list">
     <ul>
       <li class="movie-card" v-for="movie in movies" :key="movie.id">
         <div class="movie-info">
-          <!-- 
-          <router-link 
-          :to="{name:`MoviePage`, path: `/MoviePage/${movie.id}`}"
-          > -->
 
           <router-link
             :to="{
@@ -104,6 +85,13 @@ export default {
 <style scoped>
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+
+
+.search-input{
+  width: 100px;
+  height: 41px;
+}
+
 
 .app {
   background-color: rgb(57, 45, 109);
@@ -228,6 +216,7 @@ h2 {
   color: #eee;
   font-size: 15px;
   padding: 5px;
+  
 }
 
 p {
@@ -240,6 +229,8 @@ p {
 
   padding: 0.5rem 1rem 1rem;
   letter-spacing: 0.5px;
+
+  
 }
 
 a:link {
