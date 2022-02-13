@@ -159,6 +159,7 @@ export default {
 
 }
 
+
 .movie-img {
   width: 500px;
 }

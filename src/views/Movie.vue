@@ -20,44 +20,36 @@
         ←
       </button></router-link
     >
-
-
-
-<h2>Texte animé sur une image décolorée en survol</h2>
-<div class="example">
-    <img
-        :src="'https://statics.ocs.fr/' + route.img"
-     width="1000" height="600" alt="tree" />
-
-      
-  <div class="content">
-    <div class="text">      <h1>
-        {{ route.title }}
-        <h2>{{ route.subtitle }}</h2>
-      </h1>
-</div>
-  </div>
 </div>
 
-
-
-
-
-    <div class="text-block">
-      <h1>
-        {{ route.title }}
-        <h2>{{ route.subtitle }}</h2>
-      </h1>
 
       <p>{{ pitch[0] }}</p>
-    </div>
 
-    <div class="img-and-play-btn-container">
+<div class="example">
+
+
+   <div class="img-and-play-btn-container">
       <img
         :src="'https://statics.ocs.fr/' + route.img"
         style="width: 100%"
         alt=""
       />
+
+    </div>
+
+
+      <div class="fadedbox">
+
+        <div class="title text">
+      <h1 style="font-size: 5vw">{{ route.title }}
+        <h2 >{{ route.subtitle }}</h2>
+        <div>
+              <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
+
+          </div>
+
+      </h1>
+
       <div class="btn-play">
         <button
           href="#"
@@ -70,9 +62,16 @@
             style="font-size: 180px; color: orange"
           ></i>
         </button>
+
       </div>
-    </div>
+      
+        </div>
+
+      </div>
+
   </div>
+
+
 </template>
 
 <script>
@@ -130,17 +129,14 @@ export default {
 
 .img-and-play-btn-container {
   position: relative;
-}
-
-.img-and-play-btn-container img {
-  background-repeat: no-repeat;
-  background-size: cover;
+  
 }
 
 
 .img-and-play-btn-container :hover{
   background-color: transparent;
   opacity: 1;
+
 }
 
 
@@ -149,7 +145,11 @@ export default {
   background-color: #fff;
 }
 
-.btn-play {
+.title text .btn-play {
+
+margin-top: 350px;
+
+
   position: absolute;
 
   top: 50%;
@@ -158,13 +158,15 @@ export default {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 
+  transition: .5s ease;
+
 
   background-color: transparent;
   opacity: 0.4;
 
 }
 
-.btn-play :hover {
+.title text .btn-play :hover {
     background-color: transparent;
 
 }
@@ -186,6 +188,7 @@ h1 {
   font-size: 3rem;
 }
 
+
 h2 {
   font-family: "Poppins", sans-serif;
   color: #eee;
@@ -201,7 +204,6 @@ p {
   font-family: "Poppins", sans-serif;
   color: #eee;
   display: flex;
-  font-size: 1.5rem;
 
   align-items: center;
   justify-content: center;
@@ -209,8 +211,6 @@ p {
   padding: 0.5rem 1rem 1rem;
   letter-spacing: 0.5px;
 
-  margin-left: 550px;
-  margin-right: 550px;
 }
 
 ul {
@@ -234,46 +234,56 @@ a:link {
   /* width: auto; */
 }
 
+    .example {
+        cursor: pointer;
+        height: 98vh;
+        position: relative;
+        overflow: hidden;
+        width: 98vw ;
+        text-align: center;
+      }
+      .example .fadedbox {
+        background-color: #666666;
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #fff;
+        -webkit-transition: all 300ms ease-out;
+        -moz-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        -ms-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
+        opacity: 0;
+        width: 96vw;
+        height: 96vh;
+        padding: 10px 20px;
+      }
+      .example:hover .fadedbox {
+        opacity: 0.8;
+      }
+      .example .text {
+        -webkit-transition: all 300ms ease-out;
+        -moz-transition: all 300ms ease-out;
+        -o-transition: all 300ms ease-out;
+        -ms-transition: all 300ms ease-out;
+        transition: all 300ms ease-out;
+        transform: translateY(30px);
+        -webkit-transform: translateY(30px);
+      }
+      .example .title {
+        font-size: 2.5em;
+        text-transform: uppercase;
+        opacity: 0;
+        transition-delay: 0.2s;
+        transition-duration: 0.3s;
 
-.example {
-  position: relative;
-  padding: 0;
-  width: 1000px;
-  display: block;
-  cursor: pointer;
-  overflow: hidden;
-}
-.content {
-  opacity: 0;
-  font-size: 40px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: #1c87c9;
-  background-color: rgba(200, 200, 200, 0.5);
-  width: 1000;
-  height: 600;
-  -webkit-transition: all 400ms ease-out;
-  -moz-transition: all 400ms ease-out;
-  -o-transition: all 400ms ease-out;
-  -ms-transition: all 400ms ease-out;
-  transition: all 400ms ease-out;
-  text-align: center;
-}
-.example .content:hover {
-  opacity: 1;
-}
-.example .content .text {
-  height: 0;
-  opacity: 1;
-  transition-delay: 0s;
-  transition-duration: 0.4s;
-}
-.example .content:hover .text {
-  opacity: 1;
-  transform: translateY(250px);
-  -webkit-transform: translateY(250px);
-}
+      }
+      .example:hover .title,
+      .example:focus .title {
+        opacity: 1;
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+      }
 
 
 </style>
