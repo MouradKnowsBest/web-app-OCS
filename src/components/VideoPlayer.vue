@@ -1,13 +1,20 @@
 <template>
+
+
   <div ref="videoContainer" class="shadow-lg mx-auto max-w-full size">
+
     <video
       id="video"
       ref="videoPlayer"
       class="video"
       :poster="posterUrl"
       autoplay
+      preload="metadata"
     ></video>
+
   </div>
+
+
 </template>
 
 <script>
@@ -65,7 +72,11 @@ export default {
 @import "../../node_modules/shaka-player/dist/controls.css";
 
 .videoContainer{
+  margin-right: 98vw;
+  margin-left: 98vh;
 
+   /* max-height: 100%;
+  min-width: 100%; */
 }
 
 

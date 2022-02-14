@@ -1,22 +1,11 @@
 <template>
 
+
+
+<a href="/" ><h1 style="color: orange">Home</h1></a>
+
+
   <div class="movie-page">
-
-    <!-- <router-link to="/"
-      ><button
-        style="
-          color: white;
-          background-color: #ff6600;
-          font-size: 20pt;
-          position: absolute;
-          right: 9px;
-        "
-      >
-        ←
-      </button></router-link
-    >
-
-    <p>{{ pitch[0] }}</p> -->
 
     <div class="video-player" id="video" v-if="showVideo">
       <VideoPlayer
@@ -134,7 +123,8 @@ export default {
   margin-right: 42px;
   margin-left: 42px;
   margin-bottom: 180px;
-  margin-top: 180px;
+  margin-top: 250px;
+
 
   position: relative;
 
@@ -226,7 +216,7 @@ p {
   align-items: center;
   justify-content: center;
 
-  padding: 0.5rem 1rem 1rem;
+  padding: 1rem 3rem 1rem 1rem;
   letter-spacing: 0.5px;
 
 }
@@ -251,6 +241,11 @@ a:link {
 .video-player {
   position: absolute;
    z-index: 9;
+  margin-right: 180px;
+  margin-left: 160px;
+/* 
+   max-height: 100%;
+  min-width: 100%; */
 
 }
 
