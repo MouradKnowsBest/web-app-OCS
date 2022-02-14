@@ -1,62 +1,52 @@
 <template>
+  <div>
+    <router-link to="/" href="/"
+      ><img class="logo-img" alt="App logo" src="../assets/logo.png"
+    /></router-link>
 
+    <form class="search-bar" @submit.prevent="SearchMovies()">
+      <input
+        type="text"
+        placeholder="Effectuez une recherche"
+        v-model="search"
+      />
+      <i class="el-icon-search"></i>
 
-<div>
+      <button type="submit" class="search-input">CHERCHER</button>
+    </form>
 
-  <router-link to="/" href="/"
-    ><img class="logo-img" alt="App logo" src="../assets/logo.png"
-  /></router-link>
+    <div class="movies-list">
+      <ul>
+        <li class="movie-card" v-for="movie in movies" :key="movie.id">
+          <div class="movie-info">
+            <router-link
+              :to="{
+                name: 'Movie',
+                params: { id: movie.id },
+                query: {
+                  subtitle: movie.subtitle,
+                  title: movie.title[0].value,
+                  img: movie.fullscreenimageurl,
+                  detaillink: movie.detaillink,
+                },
+              }"
+              class="movie-link"
+              target="_blank"
+            >
+              <h1>{{ movie.title[0].value }}</h1>
+            </router-link>
 
-
-  <form class="search-bar" @submit.prevent="SearchMovies()" >
-    <input type="text" placeholder="Effectuez une recherche" v-model="search" />
-                                <i class="el-icon-search"></i>
-
-            <button type="submit" class="search-input">
-            CHERCHER
-        </button>
-  </form>
-
-
-
-
-
-  <div class="movies-list">
-    <ul>
-      <li class="movie-card" v-for="movie in movies" :key="movie.id">
-        <div class="movie-info">
-
-          <router-link
-            :to="{
-              name: 'Movie',
-              params: { id: movie.id },
-              query: {
-                subtitle: movie.subtitle,
-                title: movie.title[0].value,
-                img: movie.fullscreenimageurl,
-                detaillink:movie.detaillink
-              },
-            }"
-            class="movie-link"
-            target="_blank"
-          >
-            <h1>{{ movie.title[0].value }}</h1>
-          </router-link>
-
-          <img
-            :src="'https://statics.ocs.fr/' + movie.fullscreenimageurl"
-            style="width: 75%"
-            alt=""
-          />
-          <h2>{{ movie.subtitle }}</h2>
-        </div>
-      </li>
-    </ul>
+            <img
+              :src="'https://statics.ocs.fr/' + movie.fullscreenimageurl"
+              style="width: 75%"
+              alt=""
+            />
+            <h2>{{ movie.subtitle }}</h2>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-
-</div>
-
-
 </template>
 
 <script>
@@ -95,7 +85,6 @@ export default {
     async getUserInput() {
       this.$emit("userInput", this.userInput);
     },
-
   },
 };
 </script>
@@ -112,10 +101,9 @@ export default {
   display: flex;
   padding: 10px;
 }
-.logo-img{
+.logo-img {
   margin-bottom: 150px;
 }
-
 
 .search-bar {
   display: flex;
@@ -142,8 +130,6 @@ export default {
   justify-content: space-between;
   font-size: 25px;
   text-align: center;
-
-
 }
 
 .search-bar input :focus {
@@ -152,20 +138,20 @@ export default {
 }
 
 .search-bar button {
-    font-family: "Poppins", sans-serif;
-    height: 53px;
-    width: 200px;
-      border: none;
+  font-family: "Poppins", sans-serif;
+  height: 53px;
+  width: 200px;
+  border: none;
   font-size: 25px;
 
-   color: black; 
+  color: black;
 
   display: flex;
   align-items: center;
   justify-content: center;
   /* color: rgb(57, 45, 109); */
   background-color: #eee;
-  opacity: .8;
+  opacity: 0.8;
   padding: 10px;
 }
 
@@ -175,13 +161,12 @@ export default {
   opacity: 0.35; /* Firefox */
 }
 
-
-.movie-info{
+.movie-info {
   /* background-color: #EDEFFE; */
-    /* background-color:rgb(61, 66, 65); */
-    background-color:white;
-    opacity: .99;
-  border: solid 1.5px rgba(5, 5, 5, 0.2); 
+  /* background-color:rgb(61, 66, 65); */
+  background-color: white;
+  opacity: 0.99;
+  border: solid 1.5px rgba(5, 5, 5, 0.2);
 
   border-radius: 3px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
@@ -217,17 +202,14 @@ export default {
   width: 380px;
 
   margin-bottom: 20px; */
-
 }
-
 
 .movie-info img {
   width: 500px;
 
   border-radius: 12px;
   box-shadow: 0 8px 10px rgba(160, 24, 24, 0.2);
-  border: solid 1px rgba(255, 255, 255, 0.2); 
-
+  border: solid 1px rgba(255, 255, 255, 0.2);
 }
 
 .movies-list ul {
@@ -235,8 +217,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-evenly;
   /* background-color: rgb(57, 45, 109); */
-    /* background-color: #D5D8F9; */
-
+  /* background-color: #D5D8F9; */
 }
 
 ul {
@@ -248,9 +229,7 @@ li {
   color: white;
   margin-top: 20px;
   display: inline-block;
-
 }
-
 
 .play-icon {
   background-color: transparent;
@@ -285,7 +264,6 @@ h1 {
   /* color: #3C4164; */
   color: black;
 
-  
   font-size: 1vw;
   font-family: "Poppins", sans-serif;
   margin: 5px;
@@ -298,7 +276,6 @@ h2 {
 
   font-size: 18px;
   padding: 5px;
-  
 }
 
 h3 {
@@ -315,8 +292,6 @@ p {
 
   padding: 0.5rem 1rem 1rem;
   letter-spacing: 0.5px;
-
-  
 }
 
 a:link {
@@ -326,5 +301,4 @@ a:link {
 a {
   color: orange;
 }
-
 </style>

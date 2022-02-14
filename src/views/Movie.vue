@@ -1,53 +1,38 @@
 <template>
-
-<div>
-  <a href="/" ><h1 style="color: orange">Home</h1></a>
-            <div class="btn-play">
-
-
-              <button
-                href="#"
-                class="play-icon"
-                title="Video Play"
-                v-on:click="clickToCloseVideo()"
-              >
-<h1 style="color: red">FREMER <i class="fa fa-close" style="font-size:48px;color:red"></i>
-PLAYER</h1>
-
-              </button>
-
-            </div>
-
-
-
-
-  <div class="movie-page">
-
-
-    <div class="video-player" id="video" v-if="showVideo" >
-
-      <VideoPlayer
-        manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
-      />
-      
-   </div>
-
-  <div class="example" >
-
-    <div class="img-and-play-btn-container">  
-        <img
-          :src="'https://statics.ocs.fr/' + route.img"
-          alt=""
-        />
+  <div>
+    <a href="/"><h1 style="color: orange">Home</h1></a>
+    <div class="btn-play">
+      <button
+        href="#"
+        class="play-icon"
+        title="Video Play"
+      v-on:click="clickToCloseVideo()"
+      >
+        <h1 style="color: red">
+          FERMER
+          <i class="fa fa-close" style="font-size: 48px; color: red"></i> PLAYER
+        </h1>
+      </button>
     </div>
 
-    <div class="fadedbox">
+    <div class="movie-page">
+      <div class="video-player" id="video" v-if="showVideo">
+        <VideoPlayer
+        manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
+        />
+      </div>
 
+      <div class="example">
+        <div class="img-and-play-btn-container">
+          <img :src="'https://statics.ocs.fr/' + route.img" alt="" />
+        </div>
+
+        <div class="fadedbox">
           <div class="title text">
-
-            <h1 style="font-size: 5vw">{{ route.title }}
-            <h2 >{{ route.subtitle }}</h2>
-            <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
+            <h1 style="font-size: 5vw">
+              {{ route.title }}
+              <h2>{{ route.subtitle }}</h2>
+              <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
             </h1>
 
             <div class="btn-play">
@@ -62,20 +47,12 @@ PLAYER</h1>
                   style="font-size: 180px; color: orange"
                 ></i>
               </button>
-
             </div>
-        
           </div>
-
+        </div>
+      </div>
     </div>
-
   </div>
-
-</div>
-
-
-</div>
-
 </template>
 
 <script>
@@ -94,8 +71,6 @@ export default {
       pitch: [],
       showVideo: false,
       showBanner: false,
-
-  
     };
   },
 
@@ -104,35 +79,23 @@ export default {
       fetch(`https://api.ocs.fr/` + this.route.detaillink)
         .then((response) => response.json())
         .then((data) => {
-        if (data.contents.pitch ) {
-            this.pitch.push(data.contents.pitch);
-      }
-      else{
-            this.pitch.push(data.contents.seasons[0].pitch);
-      }
+          this.checkIfSerieAndSave(data);
+          console.log(process.env.VUE_APP_MANFEST_URL)
         });
     },
 
+    checkIfSerieAndSave(data) {
+      data.contents.pitch
+        ? this.pitch.push(data.contents.pitch)
+        : this.pitch.push(data.contents.seasons[0].pitch);
+    },
+
     clickToSowVideo() {
-      console.log(this.showVideo);
       this.showVideo = true;
-      console.log(this.showVideo);
-
-      
     },
-
-    clickToCloseVideo(){
-            console.log(this.showVideo);
-            this.showVideo = false;
-      console.log(this.showVideo);
-
+    clickToCloseVideo() {
+      this.showVideo = false;
     },
-
-    dismissBanner: function(){
-                this.showBanner = true;               
-            },
-
-
   },
 
   mounted() {
@@ -153,31 +116,28 @@ export default {
   margin-bottom: 180px;
   margin-top: 250px;
 
-
   position: relative;
 
   display: flex;
   flex-direction: column;
   border-radius: 12px;
 
-  border: solid 1.5px rgba(5, 5, 5, 0.2); 
+  border: solid 1.5px rgba(5, 5, 5, 0.2);
   box-shadow: 0 10px 15px rgba(199, 122, 7, 0.2);
 
   align-items: center;
-  justify-content: center
+  justify-content: center;
 }
 
 .img-and-play-btn-container {
   position: relative;
 }
 
-
-.img-and-play-btn-container :hover{
+.img-and-play-btn-container :hover {
   background-color: transparent;
   opacity: 1;
   border-radius: 12px;
 }
-
 
 .img-and-play-btn-container:hover .overlay {
   opacity: 0.7;
@@ -185,27 +145,24 @@ export default {
 }
 
 .title text .btn-play {
+  margin-top: 350px;
 
-margin-top: 350px;
+  position: absolute;
 
-position: absolute;
+  top: 50%;
+  left: 50%;
 
-top: 50%;
-left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
 
-transform: translate(-50%, -50%);
--ms-transform: translate(-50%, -50%);
+  transition: 0.5s ease;
 
-transition: .5s ease;
-
-background-color: transparent;
-opacity: 0.4;
-
+  background-color: transparent;
+  opacity: 0.4;
 }
 
 .title text .btn-play :hover {
-    background-color: transparent;
-
+  background-color: transparent;
 }
 
 .play-icon {
@@ -246,7 +203,6 @@ p {
 
   padding: 1rem 3rem 1rem 1rem;
   letter-spacing: 0.5px;
-
 }
 
 ul {
@@ -268,82 +224,76 @@ a:link {
 
 .video-player {
   position: absolute;
-   z-index: 9;
+  z-index: 9;
   margin-right: 180px;
   margin-left: 160px;
-/* 
+  /* 
    max-height: 100%;
   min-width: 100%; */
-
 }
 
 .example {
-        cursor: pointer;
-        height: 94vh;
-        position: relative;
-        overflow: hidden;
-        width: 96vw ;
-        text-align: center;
-        border-radius: 12px;
-
-      }
+  cursor: pointer;
+  height: 94vh;
+  position: relative;
+  overflow: hidden;
+  width: 96vw;
+  text-align: center;
+  border-radius: 12px;
+}
 
 .example .fadedbox {
-        background-color: #666666;
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: #fff;
- 
-        transition: all 300ms ease-out;
-        opacity: 0;
-        width: 95vw;
-        height: 96vh;
+  background-color: #666666;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
 
-        border-radius: 12px;
- }
+  transition: all 300ms ease-out;
+  opacity: 0;
+  width: 95vw;
+  height: 96vh;
 
- .example .img-and-play-btn-container img {
-     border-radius: 12px;
-    height: 94vh;
-    width: 96vw;
+  border-radius: 12px;
+}
 
- }
+.example .img-and-play-btn-container img {
+  border-radius: 12px;
+  height: 94vh;
+  width: 96vw;
+}
 
 .example:hover .fadedbox {
-        opacity: 0.8;
-        width: 98vw;
-        height:98vh;
+  opacity: 0.8;
+  width: 98vw;
+  height: 98vh;
 
-            /* margin-left: 40px;
+  /* margin-left: 40px;
             margin-top:40px; */
-
-      }
+}
 
 .example .text {
-        -webkit-transition: all 300ms ease-out;
-        -moz-transition: all 300ms ease-out;
-        -o-transition: all 300ms ease-out;
-        -ms-transition: all 300ms ease-out;
-        transition: all 300ms ease-out;
-        transform: translateY(30px);
-        -webkit-transform: translateY(30px);
-      }
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  transform: translateY(30px);
+  -webkit-transform: translateY(30px);
+}
 
 .example .title {
-        font-size: 2.5em;
-        text-transform: uppercase;
-        opacity: 0;
-        transition-delay: 0.2s;
-        transition-duration: 0.3s;
-      }
+  font-size: 2.5em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition-delay: 0.2s;
+  transition-duration: 0.3s;
+}
 
 .example:hover .title,
-      
 .example:focus .title {
-        opacity: 1;
-        transform: translateY(0px);
-        -webkit-transform: translateY(0px);
-      }
-
+  opacity: 1;
+  transform: translateY(0px);
+  -webkit-transform: translateY(0px);
+}
 </style>

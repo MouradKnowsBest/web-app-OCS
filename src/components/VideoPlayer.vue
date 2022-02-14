@@ -1,8 +1,5 @@
 <template>
-
-
   <div ref="videoContainer" class="shadow-lg mx-auto max-w-full size">
-
     <video
       id="video"
       ref="videoPlayer"
@@ -11,10 +8,7 @@
       autoplay
       preload="metadata"
     ></video>
-
   </div>
-
-
 </template>
 
 <script>
@@ -71,22 +65,17 @@ export default {
 <style>
 @import "../../node_modules/shaka-player/dist/controls.css";
 
-.videoContainer{
+.videoContainer {
   margin-right: 98vw;
   margin-left: 98vh;
 
-   /* max-height: 100%;
+  /* max-height: 100%;
   min-width: 100%; */
 }
 
-
 .video {
   display: flex;
-    border: solid 1.5px rgba(5, 5, 5, 0.2); 
+  border: solid 1.5px rgba(5, 5, 5, 0.2);
   box-shadow: 0 10px 15px rgba(199, 122, 7, 0.2);
-
-
 }
-
-
 </style>
