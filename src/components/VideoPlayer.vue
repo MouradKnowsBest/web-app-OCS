@@ -4,7 +4,6 @@
       id="video"
       ref="videoPlayer"
       class="video"
-      width="window.width"
       :poster="posterUrl"
       autoplay
     ></video>
@@ -65,12 +64,18 @@ export default {
 <style>
 @import "../../node_modules/shaka-player/dist/controls.css";
 
-.video {
-  display: flex;
+.videoContainer{
+
 }
 
-.size {
-  width: auto;
-  height: 800px;
+
+.video {
+  display: flex;
+    border: solid 1.5px rgba(5, 5, 5, 0.2); 
+  box-shadow: 0 10px 15px rgba(199, 122, 7, 0.2);
+
+
 }
+
+
 </style>

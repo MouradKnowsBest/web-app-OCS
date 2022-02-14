@@ -17,6 +17,10 @@
         </button>
   </form>
 
+
+
+
+
   <div class="movies-list">
     <ul>
       <li class="movie-card" v-for="movie in movies" :key="movie.id">

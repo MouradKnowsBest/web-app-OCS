@@ -108,9 +108,13 @@ export default {
     },
 
     clickToSowVideo() {
+
+
       console.log(this.showVideo);
       this.showVideo = true;
       console.log(this.showVideo);
+
+
     },
   },
 
@@ -132,10 +136,10 @@ export default {
   margin-bottom: 180px;
   margin-top: 180px;
 
+  position: relative;
 
   display: flex;
   flex-direction: column;
-  position: relative;
   border-radius: 12px;
 
   border: solid 1.5px rgba(5, 5, 5, 0.2); 
@@ -245,7 +249,9 @@ a:link {
 }
 
 .video-player {
-  /* width: auto; */
+  position: absolute;
+   z-index: 9;
+
 }
 
 .example {
