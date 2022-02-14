@@ -1,12 +1,7 @@
 <template>
 
-  <div class="video-player" id="video" v-if="showVideo">
-    <VideoPlayer
-      manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
-    />
-  </div>
-
   <div class="movie-page">
+
     <router-link to="/"
       ><button
         style="
@@ -21,54 +16,55 @@
       </button></router-link
     >
 
+    <p>{{ pitch[0] }}</p>
 
-
-
-      <p>{{ pitch[0] }}</p>
-
-<div class="example">
-
-
-   <div class="img-and-play-btn-container">
-      <img
-        :src="'https://statics.ocs.fr/' + route.img"
-        style="width: 100%"
-        alt=""
+    <div class="video-player" id="video" v-if="showVideo">
+      <VideoPlayer
+        manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
       />
+   </div>
 
-    </div>
+
+  <div class="example">
 
 
-      <div class="fadedbox">
+    <div class="img-and-play-btn-container">
+        <img
+          :src="'https://statics.ocs.fr/' + route.img"
+          style="width: 100%"
+          alt=""
+        />
 
-        <div class="title text">
-      <h1 style="font-size: 5vw">{{ route.title }}
-        <h2 >{{ route.subtitle }}</h2>
-        <div>
-              <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
+      </div>
 
+
+        <div class="fadedbox">
+
+          <div class="title text">
+            <h1 style="font-size: 5vw">{{ route.title }}
+            <h2 >{{ route.subtitle }}</h2>
+            <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
+
+        </h1>
+
+        <div class="btn-play">
+          <button
+            href="#"
+            class="play-icon"
+            title="Video Play"
+            v-on:click="clickToSowVideo()"
+          >
+            <i
+              class="fa fa-play-circle"
+              style="font-size: 180px; color: orange"
+            ></i>
+          </button>
+
+        </div>
+        
           </div>
 
-      </h1>
-
-      <div class="btn-play">
-        <button
-          href="#"
-          class="play-icon"
-          title="Video Play"
-          v-on:click="clickToSowVideo()"
-        >
-          <i
-            class="fa fa-play-circle"
-            style="font-size: 180px; color: orange"
-          ></i>
-        </button>
-
-      </div>
-      
         </div>
-
-      </div>
 
   </div>
 

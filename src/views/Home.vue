@@ -1,12 +1,18 @@
 <template>
+
+
+<div>
+
   <router-link to="/" href="/"
     ><img alt="App logo" src="../assets/logo.png"
   /></router-link>
 
 
-  <form @submit.prevent="SearchMovies()" class="search-bar">
+  <form class="search-bar" @submit.prevent="SearchMovies()" >
     <input type="text" placeholder="Votre recherche" v-model="search" />
-    <input type="submit" value="CHERCHER" class="search-input" />
+            <button type="submit" class="search-input">
+            CHERCHER
+        </button>
   </form>
 
 
@@ -42,6 +48,10 @@
       </li>
     </ul>
   </div>
+
+</div>
+
+
 </template>
 
 <script>
@@ -89,15 +99,13 @@ export default {
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
-
-.search-input{
-  width: 100px;
-  height: 41px;
-}
-
-
 .app {
   background-color: rgb(57, 45, 109);
+}
+
+.app .container {
+  display: flex;
+  padding: 10px;
 }
 
 .search-bar {
@@ -109,20 +117,44 @@ export default {
 }
 
 .search-bar input {
-  width: 500px;
-  height: 35px;
+  font-family: "Poppins", sans-serif;
+
+  width: 800px;
+  height: 50px;
+
+  background-color: rgb(57, 45, 109);
+
+  color: #eee;
+
   margin-right: 10px;
-  background-color: transparent;
   border: 1px solid #22254b;
-    color: #ffffff;
   justify-content: space-between;
   font-size: 25px;
   text-align: center;
+
+
 }
 
 .search-bar input :focus {
   background-color: #22254b;
   outline: none;
+}
+
+.search-bar button {
+    font-family: "Poppins", sans-serif;
+    height: 53px;
+    width: 200px;
+      border: none;
+  font-size: 25px;
+
+  color: #eee;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(57, 45, 109);
+  background-color: #eee;
+  padding: 10px;
 }
 
 ::placeholder {
@@ -131,15 +163,7 @@ export default {
   opacity: 0.35; /* Firefox */
 }
 
-.search-bar button {
-  width: 100px;
-  height: 41px;
-}
 
-.app .container {
-  display: flex;
-  padding: 10px;
-}
 
 .movie-card {
   display: flex;
@@ -247,11 +271,8 @@ a:link {
   text-decoration: none;
 }
 
-.video-player {
-}
-
-
 a {
   color: orange;
 }
+
 </style>
