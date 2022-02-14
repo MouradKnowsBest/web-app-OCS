@@ -1,20 +1,38 @@
 <template>
 
+<div>
+  <a href="/" ><h1 style="color: orange">Home</h1></a>
+            <div class="btn-play">
 
 
-<a href="/" ><h1 style="color: orange">Home</h1></a>
+              <button
+                href="#"
+                class="play-icon"
+                title="Video Play"
+                v-on:click="clickToCloseVideo()"
+              >
+<h1 style="color: red">FREMER <i class="fa fa-close" style="font-size:48px;color:red"></i>
+PLAYER</h1>
+
+              </button>
+
+            </div>
+
+
 
 
   <div class="movie-page">
 
-    <div class="video-player" id="video" v-if="showVideo">
+
+    <div class="video-player" id="video" v-if="showVideo" >
+
       <VideoPlayer
         manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
       />
+      
    </div>
 
-
-  <div class="example">
+  <div class="example" >
 
     <div class="img-and-play-btn-container">  
         <img
@@ -55,6 +73,9 @@
 
 </div>
 
+
+</div>
+
 </template>
 
 <script>
@@ -72,6 +93,8 @@ export default {
       route: this.$route.query,
       pitch: [],
       showVideo: false,
+      showBanner: false,
+
   
     };
   },
@@ -81,30 +104,35 @@ export default {
       fetch(`https://api.ocs.fr/` + this.route.detaillink)
         .then((response) => response.json())
         .then((data) => {
-
-
-
         if (data.contents.pitch ) {
-                    this.pitch.push(data.contents.pitch);
-
+            this.pitch.push(data.contents.pitch);
       }
       else{
-                    this.pitch.push(data.contents.seasons[0].pitch);
-
+            this.pitch.push(data.contents.seasons[0].pitch);
       }
-
         });
     },
 
     clickToSowVideo() {
-
-
       console.log(this.showVideo);
       this.showVideo = true;
       console.log(this.showVideo);
 
+      
+    },
+
+    clickToCloseVideo(){
+            console.log(this.showVideo);
+            this.showVideo = false;
+      console.log(this.showVideo);
 
     },
+
+    dismissBanner: function(){
+                this.showBanner = true;               
+            },
+
+
   },
 
   mounted() {
