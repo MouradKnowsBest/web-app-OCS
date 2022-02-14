@@ -2,7 +2,7 @@
 
   <div class="movie-page">
 
-    <router-link to="/"
+    <!-- <router-link to="/"
       ><button
         style="
           color: white;
@@ -16,7 +16,7 @@
       </button></router-link
     >
 
-    <p>{{ pitch[0] }}</p>
+    <p>{{ pitch[0] }}</p> -->
 
     <div class="video-player" id="video" v-if="showVideo">
       <VideoPlayer
@@ -27,44 +27,40 @@
 
   <div class="example">
 
-
-    <div class="img-and-play-btn-container">
+    <div class="img-and-play-btn-container">  
         <img
           :src="'https://statics.ocs.fr/' + route.img"
-          style="width: 100%"
           alt=""
         />
+    </div>
 
-      </div>
-
-
-        <div class="fadedbox">
+    <div class="fadedbox">
 
           <div class="title text">
+
             <h1 style="font-size: 5vw">{{ route.title }}
             <h2 >{{ route.subtitle }}</h2>
             <p style="font-size: 1.1vw">{{ pitch[0] }}</p>
+            </h1>
 
-        </h1>
+            <div class="btn-play">
+              <button
+                href="#"
+                class="play-icon"
+                title="Video Play"
+                v-on:click="clickToSowVideo()"
+              >
+                <i
+                  class="fa fa-play-circle"
+                  style="font-size: 180px; color: orange"
+                ></i>
+              </button>
 
-        <div class="btn-play">
-          <button
-            href="#"
-            class="play-icon"
-            title="Video Play"
-            v-on:click="clickToSowVideo()"
-          >
-            <i
-              class="fa fa-play-circle"
-              style="font-size: 180px; color: orange"
-            ></i>
-          </button>
-
-        </div>
+            </div>
         
           </div>
 
-        </div>
+    </div>
 
   </div>
 
@@ -87,6 +83,7 @@ export default {
       route: this.$route.query,
       pitch: [],
       showVideo: false,
+  
     };
   },
 
@@ -130,22 +127,33 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 
 .movie-page {
-  background-color: #22254b;
+  margin-right: 42px;
+  margin-left: 42px;
+  margin-bottom: 180px;
+  margin-top: 180px;
+
+
   display: flex;
   flex-direction: column;
   position: relative;
+  border-radius: 12px;
+
+  border: solid 1.5px rgba(5, 5, 5, 0.2); 
+  box-shadow: 0 10px 15px rgba(199, 122, 7, 0.2);
+
+  align-items: center;
+  justify-content: center
 }
 
 .img-and-play-btn-container {
   position: relative;
-  
 }
 
 
 .img-and-play-btn-container :hover{
   background-color: transparent;
   opacity: 1;
-
+  border-radius: 12px;
 }
 
 
@@ -158,20 +166,18 @@ export default {
 
 margin-top: 350px;
 
+position: absolute;
 
-  position: absolute;
+top: 50%;
+left: 50%;
 
-  top: 50%;
-  left: 50%;
+transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
 
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+transition: .5s ease;
 
-  transition: .5s ease;
-
-
-  background-color: transparent;
-  opacity: 0.4;
+background-color: transparent;
+opacity: 0.4;
 
 }
 
@@ -196,7 +202,6 @@ h1 {
   font-family: "Poppins", sans-serif;
   font-size: 3rem;
 }
-
 
 h2 {
   font-family: "Poppins", sans-serif;
@@ -243,34 +248,50 @@ a:link {
   /* width: auto; */
 }
 
-    .example {
+.example {
         cursor: pointer;
-        height: 98vh;
+        height: 94vh;
         position: relative;
         overflow: hidden;
-        width: 98vw ;
+        width: 96vw ;
         text-align: center;
+        border-radius: 12px;
+
       }
-      .example .fadedbox {
+
+.example .fadedbox {
         background-color: #666666;
         position: absolute;
         top: 0;
         left: 0;
         color: #fff;
-        -webkit-transition: all 300ms ease-out;
-        -moz-transition: all 300ms ease-out;
-        -o-transition: all 300ms ease-out;
-        -ms-transition: all 300ms ease-out;
+ 
         transition: all 300ms ease-out;
         opacity: 0;
-        width: 96vw;
+        width: 95vw;
         height: 96vh;
-        padding: 10px 20px;
-      }
-      .example:hover .fadedbox {
+
+        border-radius: 12px;
+ }
+
+ .example .img-and-play-btn-container img {
+     border-radius: 12px;
+    height: 94vh;
+    width: 96vw;
+
+ }
+
+.example:hover .fadedbox {
         opacity: 0.8;
+        width: 98vw;
+        height:98vh;
+
+            /* margin-left: 40px;
+            margin-top:40px; */
+
       }
-      .example .text {
+
+.example .text {
         -webkit-transition: all 300ms ease-out;
         -moz-transition: all 300ms ease-out;
         -o-transition: all 300ms ease-out;
@@ -279,20 +300,21 @@ a:link {
         transform: translateY(30px);
         -webkit-transform: translateY(30px);
       }
-      .example .title {
+
+.example .title {
         font-size: 2.5em;
         text-transform: uppercase;
         opacity: 0;
         transition-delay: 0.2s;
         transition-duration: 0.3s;
-
       }
-      .example:hover .title,
-      .example:focus .title {
+
+.example:hover .title,
+      
+.example:focus .title {
         opacity: 1;
         transform: translateY(0px);
         -webkit-transform: translateY(0px);
       }
-
 
 </style>

@@ -4,17 +4,18 @@
 <div>
 
   <router-link to="/" href="/"
-    ><img alt="App logo" src="../assets/logo.png"
+    ><img class="logo-img" alt="App logo" src="../assets/logo.png"
   /></router-link>
 
 
   <form class="search-bar" @submit.prevent="SearchMovies()" >
-    <input type="text" placeholder="Votre recherche" v-model="search" />
+    <input type="text" placeholder="Effectuez une recherche" v-model="search" />
+                                <i class="el-icon-search"></i>
+
             <button type="submit" class="search-input">
             CHERCHER
         </button>
   </form>
-
 
   <div class="movies-list">
     <ul>
@@ -107,12 +108,17 @@ export default {
   display: flex;
   padding: 10px;
 }
+.logo-img{
+  margin-bottom: 150px;
+}
+
 
 .search-bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(57, 45, 109);
+  /* background-color: rgb(57, 45, 109); */
+  /* background-color: #D5D8F9; */
   padding: 10px;
 }
 
@@ -122,11 +128,12 @@ export default {
   width: 800px;
   height: 50px;
 
-  background-color: rgb(57, 45, 109);
+  /* background-color: rgb(57, 45, 109); */
 
-  color: #eee;
+  /* color: #eee; */
+  color: black;
 
-  margin-right: 10px;
+  margin-right: 60px;
   border: 1px solid #22254b;
   justify-content: space-between;
   font-size: 25px;
@@ -147,52 +154,85 @@ export default {
       border: none;
   font-size: 25px;
 
-  color: #eee;
+   color: black; 
 
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(57, 45, 109);
+  /* color: rgb(57, 45, 109); */
   background-color: #eee;
+  opacity: .8;
   padding: 10px;
 }
 
 ::placeholder {
   /* Internet Explorer 10-11 */
-  color: rgb(255, 255, 255);
+  color: black;
   opacity: 0.35; /* Firefox */
 }
 
 
+.movie-info{
+  /* background-color: #EDEFFE; */
+    /* background-color:rgb(61, 66, 65); */
+    background-color:white;
+    opacity: .99;
+  border: solid 1.5px rgba(5, 5, 5, 0.2); 
 
-.movie-card {
+  border-radius: 3px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+  margin: 1rem;
+
   display: flex;
 
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  /* padding: 1px;
+  border-radius: 12px 12px 0 0;
+  border: solid 1px rgba(255, 255, 255, 0.2); */
+  height: 350px;
+  width: 380px;
+  margin-bottom: 20px;
+}
 
-  padding: 1px;
+.movie-card {
+  /* display: flex;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  /* padding: 1px;
 
   border-radius: 12px 12px 0 0;
   border: solid 1px rgba(255, 255, 255, 0.2);
-
+  height: 400px;
   width: 380px;
 
-  margin-bottom: 20px;
+  margin-bottom: 20px; */
 
 }
 
 
-.movie-img {
+.movie-info img {
   width: 500px;
+
+  border-radius: 12px;
+  box-shadow: 0 8px 10px rgba(160, 24, 24, 0.2);
+  border: solid 1px rgba(255, 255, 255, 0.2); 
+
 }
 
 .movies-list ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: rgb(57, 45, 109);
+  /* background-color: rgb(57, 45, 109); */
+    /* background-color: #D5D8F9; */
+
 }
 
 ul {
@@ -202,7 +242,7 @@ ul {
 li {
   flex: 1 0 0 19%;
   color: white;
-      margin-top: 50px;
+  margin-top: 20px;
   display: inline-block;
 
 }
@@ -236,15 +276,23 @@ button {
 }
 
 h1 {
-  color: rgb(17, 218, 124);
-  font-size: 20px;
+  /* color: rgb(17, 218, 124); */
+
+  /* color: #3C4164; */
+  color: black;
+
+  
+  font-size: 1vw;
   font-family: "Poppins", sans-serif;
+  margin: 5px;
+  margin-bottom: 10px;
 }
 
 h2 {
   font-family: "Poppins", sans-serif;
-  color: #eee;
-  font-size: 15px;
+  color: orange;
+
+  font-size: 18px;
   padding: 5px;
   
 }
