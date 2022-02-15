@@ -1,12 +1,13 @@
 <template>
   <div>
     <a href="/"><h1 style="color: orange">Home</h1></a>
+
     <div class="btn-play">
       <button
         href="#"
         class="play-icon"
         title="Video Play"
-      v-on:click="clickToCloseVideo()"
+        v-on:click="clickToCloseVideo()"
       >
         <h1 style="color: red">
           FERMER
@@ -17,9 +18,7 @@
 
     <div class="movie-page">
       <div class="video-player" id="video" v-if="showVideo">
-        <VideoPlayer
-        manifestUrl="https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
-        />
+        <VideoPlayer manifestUrl=process.env.VUE_APP_manifestUrlL />
       </div>
 
       <div class="example">
@@ -76,11 +75,10 @@ export default {
 
   methods: {
     getPitchData() {
-      fetch(`https://api.ocs.fr/` + this.route.detaillink)
+      fetch(process.env.VUE_APP_API_CALL_PITCH + this.route.detaillink)
         .then((response) => response.json())
         .then((data) => {
           this.checkIfSerieAndSave(data);
-          console.log(process.env.VUE_APP_MANFEST_URL)
         });
     },
 
@@ -100,6 +98,11 @@ export default {
 
   mounted() {
     this.getPitchData();
+    console.log(process.env.VUE_APP_manifestUrlL);
+    console.log(process.env.VUE_APP_API_CALL_PITCH);
+
+
+    
   },
 
   props: ["id", "subtitle", "img", "title", "detaillink"],

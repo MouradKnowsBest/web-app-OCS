@@ -37,7 +37,8 @@
             </router-link>
 
             <img
-              :src="'https://statics.ocs.fr/' + movie.fullscreenimageurl"
+              :src= process.env.VUE_APP_API_CALL_MOVIE_DATA + movie.fullscreenimageurl
+
               style="width: 75%"
               alt=""
             />
@@ -79,6 +80,11 @@ export default {
       movies,
       SearchMovies,
     };
+  },
+
+  mounted(){
+
+  console.log(process.env.VUE_APP_API_CALL_MOVIE_DATA)
   },
 
   methods: {
